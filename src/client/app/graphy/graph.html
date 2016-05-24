@@ -1,0 +1,36 @@
+﻿<section class="mainbar">
+    <section class="matter verticle-center text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="l-graphes" style="position: relative;">
+                        <!-- Line graph -->
+                        <h1>According to Task Given</h1>
+                        <div class="l-graphes__linegraph l-graphes__center" style="width:{{vm.width}}px; height:{{vm.height}}px;">
+                            <div class="l-graphes__Axis--y" style="width:{{vm.height}}px;">{{vm.yAxis}}</div>
+                            <div class="l-graphes__Axis--x">{{vm.xAxis}}</div>
+                            <svg ng-attr-height="{{vm.height}}" width="100%">
+                                <line class="l-graphes__linegraph--line{{$index}}" ng-repeat="line in vm.data" ng-attr-x1="{{vm.width / vm.maxX * $index }}" ng-attr-y1="{{vm.data[$index - 1].y / vm.maxY * vm.height}}" ng-attr-x2="{{vm.width / vm.maxX * ($index + 1)}}" ng-attr-y2="{{line.y / vm.maxY * vm.height}}" />
+                            </svg>
+                            <div class="l-graphes__linegraph--dot l-graphes__linegraph--dot{{$index}}" ng-repeat="line in vm.data" style="bottom:calc({{line.y}}/{{vm.maxY}}*{{vm.height}}px - 5px); left:calc({{line.x}}/{{vm.maxX}}*{{vm.width}}px - 5px);"></div>
+                        </div>
+                        <!-- Bar chart-->
+                        <h2>Alternative1 - Bar Chart</h2>
+                        <div class="l-graphes__center" style="width:{{vm.width}}px; height:{{vm.height}}px;">
+                            <div class="l-graphes__Axis--y" style="width:{{vm.height}}px;">{{vm.yAxis}}</div>
+                            <div class="l-graphes__Axis--x">{{vm.xAxis}}</div>
+                            <div ng-repeat="bar in vm.data" class="l-graphes__bar" style="height:{{bar.y / vm.maxY * vm.height}}px; width:{{vm.width / vm.data.length - 140}}px; left:{{$index / vm.data.length * vm.width}}px;"></div>
+                        </div>
+                        <!-- Dot chart-->
+                        <h2>Alternative2 - Dot Chart</h2>
+                        <div class="l-graphes__center" style="width:{{vm.width}}px; height:{{vm.height}}px;">
+                            <div class="l-graphes__Axis--y" style="width:{{vm.height}}px;">{{vm.yAxis}}</div>
+                            <div class="l-graphes__Axis--x">{{vm.xAxis}}</div>
+                            <div ng-repeat="dot in vm.data" class="l-graphes__altdot" style="bottom:{{dot.y / vm.maxY * vm.height}}px; left:{{($index + 0.5) / vm.data.length * vm.width}}px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
